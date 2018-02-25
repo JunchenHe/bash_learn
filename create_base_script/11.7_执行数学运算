@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#11.7.1 expr
+expr 1 + 5
+	#|   + 前后有空格
+
+expr 3 \* 4
+	#|   \* 否则无法识别,会被认成通配符
+
+var1=10
+var2=20
+var3=$(expr $var1 \* $var2)
+echo The result of $var1 \* $var2 is: $var3
+
+#11.7.2 使用 [ ]
+# $[ operation ]
+
+var1=$[ 1 + 5 ]
+echo var1 is: $var1
+
+var2=$[$var1 + 3 ]
+echo var2 is: $var2
+
+var3=30
+var4=$[$var1 * ($var2 - $var3)]
+echo the final result is $var4
+
+
+#11.7.3 浮点解决方案
+#内建的bash计算器 bc
+#内建变量scale控制浮点运算，默认为0
+#scale=3	输出小数位数有3位
+
+#在脚本中使用bc，用命令替换
+
+#variable=$(echo "option; expression" | bc)
+#option设置变量
+var1=$(echo "scale=4 ; 44.9/5" | bc)
+echo the answer is: $var1
+
+var1=23
+var2=4
+var3=$(echo "scale=3;$var1 / $var2" | bc)
+echo the answer $var1 \/ $var2 is: $var3
+
+
+#bc 输入重定向
+#进行大量运算使用
+
+:<<!
+
+variable=$(bc << EOF
+options
+statusments
+expressions
+EOF
+)
+
+!
+
+var1=10.46
+var2=43.67
+var3=33.2
+var4=71
+var5=$( bc << EOF
+a1=($var1 * $var2)
+b1=($var3 * $var4)
+a1+b1
+EOF
+)
+echo var5 is: $var5
+
+
+
+
+
+
+
+
+
