@@ -1,0 +1,27 @@
+#!/bin/bash
+
+:<<!
+
+if command
+then
+	commands
+else
+	commands
+fi
+
+!
+
+
+:<<!
+
+if command1
+then
+	commands
+elif command2
+then 
+	commands
+fi 
+
+!
+
+
