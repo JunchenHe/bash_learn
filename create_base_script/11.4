@@ -1,0 +1,66 @@
+#!/bin/bash
+
+if false;then
+echo "多行注释"
+fi
+:<<!
+echo "多行注释"
+!
+
+#11.4.1 环境变量
+
+echo "User info for userid: $USER "
+echo UID: $UID
+echo HOME: $HOME
+
+echo "The coast of the item is \$15"
+# \以正常显示$
+
+
+#11.4.2 用户变量
+#自动决定变量类型
+var1=10
+var2=-57
+var3=testing
+var4="still more testing"
+
+echo $var4
+# $以显示变量
+
+
+#引用变量显示其值--> $var
+#引用变量对其赋值--> var=$var2
+
+var5=$var1
+var5=var1
+
+
+#11.4.3 命令替换
+# 反引号字符(`) testing=`date`
+# $() 格式		testing=$(date)
+#将shell 命令的输入赋给变量
+
+testing=$(date)
+echo "The date and time is: " $testing
+
+
+
+today=$(date +%y%m%d)
+ls /usr/bin > log.$today
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
