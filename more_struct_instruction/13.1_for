@@ -1,0 +1,112 @@
+#!/bin/bash
+
+:<<!
+
+for var in list
+do
+	commands
+done
+
+#-----------
+
+for var in list ; do
+	commands
+done
+
+!
+
+if false;then
+
+for test in he jun chen ; do
+	echo $test
+done
+
+fi
+
+if false;then
+
+for test in I don\'t know how if "this'll" work;do
+	echo $test
+done
+
+fi
+
+
+
+#13.1.3 从变量读取列表
+:<<!
+
+
+
+list="he jun chen"
+list=$list" test"
+for a in $list 
+do
+	echo $a
+done
+
+
+!
+
+##13.1.4 从命令读取值
+
+if false ;then
+
+file="status"
+for a in $(cat $file);do
+	echo $a
+done
+
+fi
+#########################
+#更改字段分隔符
+#空格，制表符，换行符
+# 制定对个IFS-->   IFS=$'\n';:"
+
+if false;then
+
+
+IFS.old=$IFS
+IFS=$'\n'
+
+file='status'
+for a in $(cat $file)
+do
+	echo $a
+done
+
+IFS=$IFS.lod
+
+fi
+
+#######################
+#13.1.6 通配符读取目录
+# $dir 可能包含空格，使用"$dir"
+
+
+file="/home/he/*"
+for dir in $file;do
+	if [ -d "$dir" ]
+	then
+		echo "$dir is a directory."	
+	elif [ -f "$dir" ]
+	then	
+		echo "$dir is a file."
+	fi
+done
+
+
+##########################33
+
+
+
+
+
+
+
+
+
+
+
+
+
