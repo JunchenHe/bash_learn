@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# 输入和输出重定向
+who >test
+who >>test
+#追加方式
+
+
+wc < test
+
+#内联输入重定向
+:<<!
+
+command << marker
+date
+marker
+
+!
+
+
+
+
+
+
