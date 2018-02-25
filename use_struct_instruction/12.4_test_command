@@ -1,0 +1,103 @@
+#!/bin/bash
+
+#使用test测试推出码之外的条件
+:<<!
+
+if test condition
+then 
+	commands
+fi
+
+------------
+
+if [condition ]
+then
+	commands
+fi
+
+# [ 和 ]之前加空格
+
+-eq 相等
+-ge	大于等于
+-gt	大于
+-le 小于等于
+-lt 小于
+-ne 不等于
+
+
+
+!
+
+if [ 4 -eq 8 ] 
+then 
+	echo "equal"
+else
+	echo "no equal"
+fi
+
+value1=10
+value2=11
+if [ $value1 -eq 10 ] 
+then
+	echo "equal"
+fi
+
+#不能使用浮点数
+
+
+#12.4.2
+#字符串比较
+:<<!
+
+=
+!=
+> #需要转义 \>
+< 
+-n #长度非0
+-z #长度为0
+
+!
+
+
+
+testuser=he
+if [ $USER=$testuser ]
+then
+	echo "welcome $USER"
+fi
+
+val1=baseball
+val2=honkey
+if [ $val1 \> $val2 ]
+then
+	echo $val1 is bigger then $val2 
+else
+	echo $val1 is less then $val2
+fi
+
+
+
+#12.4.3 文件比较
+# -d file
+# -e file
+# -f file
+# -r file
+# -s file
+# -w file
+# -x file
+# -O file
+# -G file
+# file1 -nt file2
+# file2 -ot file2
+
+
+
+
+
+
+
+
+
+
+
+
