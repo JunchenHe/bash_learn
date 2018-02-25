@@ -1,0 +1,15 @@
+#!/bin/bash
+:<<!
+
+if command
+then
+	commands
+fi
+
+!
+
+#执行if 后面的 command ，返回状态码，为0则运行then 后的commands
+if pwd
+then
+	echo "It worked."
+fi
