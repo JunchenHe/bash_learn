@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#15.1.1 标准文件描述符 
+# cat < file
+# STDERR 不会 随着 STDOUT 的重定向而发生改变
+# 在脚本中通常需要改变这种行为
+#   ls -al badfile > test
+#   只会屏幕上看见错误，不会出现在文件里
+
+
+
+# 15.1.2 重定向错误
+# 1--> STDIN   2-->STDOUT  3-->STDERR
+###  只重定向错误, 2>  2需要紧紧贴住>,否则错误
+
+#  ls -al badfile 2> test
+
+# 错误消息会保存在文件中，但是只保存错误消息，非数据 
+
+
+### 重定向 错误 和 数据
+# 使用两个重定向符号，指向用于保存数据的输出文件 
+#   ls -al test test2 test3 test4 2> test6 1> test7
+
+
+#	将 STDOUT 和 STDERR 指向同一个输入文件,错误信息会优先在文件开头
+#	ls -al test test2 test3 &> test7
