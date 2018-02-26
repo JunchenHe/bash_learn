@@ -1,0 +1,108 @@
+#!/bin/bash
+
+#14.6.1 基本的读取
+:<<!
+
+echo -n "Enter your name: "
+read name
+echo "Hello $name, welcome to!"
+
+!
+if false;then
+
+# read -p 指定提示
+
+read -p "enter your age:" age
+days=$[ $age * 365 ]
+echo that makes you over $days days old!
+
+fi
+
+:<<!
+#指定变量，若变量不够，不够的变量全在最后一个变量里面
+
+read -p "Enter your name:" first second
+echo first name is $first
+echo second name is $second
+
+
+!
+:<<!
+#若不指定变量，默认在REPLY里面
+
+read -p "Enter your name:"
+echo $REPLY
+
+!
+
+##############################
+# 14.6.2 超时
+# -t 指定计时器	，若过时，返回一个非0状态码
+
+if false;then
+
+if read -t 5 -p "Enter your name: " name
+then
+	echo $name
+else
+	echo sorry,too slow! 
+fi
+
+fi
+
+
+###################
+# -n 和 1一起使用，只接受1个参数
+# 接受一个字符后退出
+:<<!
+
+read -n1 -p "Do you want to continue[Y/N]? " answer
+case $answer in 
+	y|Y)
+		echo  
+		echo OK
+		echo continue...;;
+	n|N)
+	   	echo	
+		echo Bye;;
+esac	
+
+
+!
+
+##############################3
+#16.6.3 隐藏方式读取
+# 输入密码
+:<<!
+
+read -s -p "enter your pwd:" pwd
+echo 
+echo $pwd
+
+
+!
+##############################3
+#14.6.4 从文件读取
+
+file='test.txt'
+cat $file | while read line 
+do 
+	echo $line
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
