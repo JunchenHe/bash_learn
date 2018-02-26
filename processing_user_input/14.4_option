@@ -1,0 +1,151 @@
+#!/bin/bash
+
+
+#处理选项
+:<<!
+##############################
+
+while [ -n "$1" ]
+do
+	case "$1" in
+		-a)	echo find -a;;
+		-b) echo find -b;;
+		*)  echo find anather;;
+	esac		
+	shift
+done
+
+###############################
+!
+
+:<<!
+
+#分离参数和选项
+#linux 标准做法，用 -- 分开参数和选项
+
+while [ -n "$1" ]
+do 
+	case "$1" in
+		-a) echo find -a option;;
+		-b) echo find -b option;;
+		--) shift;
+		  break;
+    esac	  
+		shift
+done
+
+count=1;
+for x in $@
+do
+	echo "Paramers in $count is:"$x
+	count=$[ $count +1 ]
+done
+
+!
+
+# ./script -a -b -c -- 4 5 2
+##################################3
+
+
+#处理带值选项
+
+if false;then
+
+while [ -n "$1" ]
+do
+	case "$1" in
+		-a) echo find -a option;;
+		-b)
+			param="$2"			
+			echo 'find -b option, with parameter is' $param
+			shift;;
+		-c) echo find -c option;;
+		--) shift
+			break;;
+		*) 	echo $1 is not option;;
+	esac
+	shift
+done
+
+
+
+fi
+#################################
+if false;then
+
+#14.4.3 getopt命令
+
+#getopt -q ab:cd -a -b test -c -d test1 test2
+#--> -a -b 'test' -c -c -- 'test1' 'test2' 
+# b 后面只能有一个参数,可以将对个参数用"",eg-->"test1 test2 test3",但解析之后就没了"",会出问题
+# -q 忽略错误信息
+
+
+# set -- 
+# 替换命令行参数
+
+set -- $( getopt -q ab:cd "$@" )
+while [ -n "$1" ]
+do
+	case "$1" in 
+		-a) echo find -a option;;
+		-b) param="$2"
+			echo find -b option, with param is $2
+			shift;;
+		-c) echo find -c option;;
+		--) shift
+		 	break;;
+		*)  echo $1 is not option;		
+	esac
+	shift
+done
+
+count=1
+for x in "$@"
+do
+	echo param $count is $x
+	count=$[ $count +1 ]
+done
+
+
+fi
+############################33
+# getopts
+#每次只处理命令行上检测到的一个参数
+# OPTAEG 存参数 , OPTIND 存当前处理的参数位置
+# 可以用"" 将包含空格的参数扩起来
+# 未知参数以?发送给opt
+:<<!
+
+while getopts :ab:c opt
+do
+	case "$opt" in
+		a) echo find -a option;;
+		b) echo find -b option, with params is $OPTARG.;;
+		c) echo find -c option;;
+		*) echo Unknow option: $opt;;
+	esac
+done
+
+!
+
+while getopts :ab:cd opt
+do
+	case "$opt" in
+		a) echo find -a option;;
+		b) echo find -b option, with params is "$OPTARG";;
+		c) echo find -c option;;
+		d) echo find -d option;;
+		*) echo Unknow "$opt" option;;
+	esac
+done
+
+shift $[ $OPTIND-1]
+count=1
+for param in $@
+do
+	echo params \#$count is: $param
+	count=$[ $count +1 ]	
+done
+
+
