@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#两种基本linux信号
+# 中断进程 --> ctrl+C  SIGINT  信号
+# 暂停进程 --> ctrl+Z  SIGTSTP 信号
+
+#16.1.3 捕获信号
+# trap commands signals
+if false;then
+
+trap "echo 'Sorry! I have trap ctrl-C'" SIGINT
+count=1
+while [ $count -le 10 ]
+do
+	echo \#$count
+	count=$[ $count + 1 ]	
+	sleep 1
+done
+
+
+fi
+
+#############################
+#16.1.4 捕获推出信号
+if false;then
+
+trap "echo Bye..." EXIT
+count=1
+while [ $count -le 10 ]
+do
+	echo \#$count
+	count=$[ $count + 1 ]	
+	sleep 1
+done
+
+fi
+
+###########################
+# 删除自定义的信号
+#  trap -- SIGINT
+
+
+
+
+
+
