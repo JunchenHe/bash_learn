@@ -1,0 +1,14 @@
+#!/bin/bash
+
+##移动变量
+# shift : $3-->$2 $2-->$1 $1-->del
+
+count=1
+while [ -n "$1" ]
+do
+	echo "parameters in $count is:$1"
+	count=$[ $count+1 ]
+	shift
+done
+
+#shift 2-->指定跳过的参数
