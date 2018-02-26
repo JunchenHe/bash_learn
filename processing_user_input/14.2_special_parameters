@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#参数统计--> $#
+#echo there is $# parameters.
+
+:<<!
+
+if [ $# -ne 2 ]
+then
+	echo Userage: command a b
+else
+	echo $[ $1 + $2 ]
+fi
+
+
+
+
+echo the lastest parameter is ${!#}
+#最后一个变量
+
+!
+
+
+###############
+#14.2.2 抓取所有数据
+
+count=1
+for para in "$*"
+do
+	echo "param in $count is:$para "
+	count=$[ $count+1 ]
+done
+
+
+
+count=1
+for para in "$@"
+do
+	echo "param in $count is: $para"
+	count=$[ $count+1 ]
+done
+
+
+#########################3
+
