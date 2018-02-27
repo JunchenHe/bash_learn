@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# 在命令后面加 & ，转入后台模式
+
+# 在非控制台下运行的脚本
+
+# $$ 显示脚本PID
+
+exec 3>./test
+
+echo this script\'s PID is $$ >&3
+count=1
+while [ $count -le 10 ]
+do
+	echo \#$count >&3
+	count=$[ $count+1 ]
+	sleep 3
+done
+
+
+# bg 作业号  -> 以后台模式重启作业
+# fg 作业号  -> 以前台模式重启作业
+
+
+
