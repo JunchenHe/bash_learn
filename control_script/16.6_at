@@ -1,0 +1,15 @@
+#!/bin/bash
+#定时运行作业 at 命令
+
+# at [ -f filename ] time
+# 默认以sendmail 方式获取输出，但及不方便，最后自己重定向
+#
+
+echo "This script ran at $(date +%B%d,%T)" > test
+echo >>test
+sleep 5
+echo "This script end..." >>test
+
+
+
+
